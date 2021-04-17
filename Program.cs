@@ -31,7 +31,7 @@ namespace DiscordBotDM
 
             _handler = new CommandHandler(_client);
 
-            await _handler.GetUser1();
+            await _handler.DmUSer();
 
             await Task.Delay(-1);
         }       

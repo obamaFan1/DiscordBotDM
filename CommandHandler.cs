@@ -21,7 +21,7 @@ namespace DiscordBotDM
 
             _service = new CommandService();
         }          
-        public async Task GetUser1()
+        public async Task DmUSer()
         {
            var guild = _client.GetGuild(829222916808769558);
            var member = guild.GetUsersAsync();
