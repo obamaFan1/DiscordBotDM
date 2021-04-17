@@ -11,35 +11,29 @@ namespace DiscordBotDM
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public void Main(string[] args)
         => new Program().MainAsync().GetAwaiter().GetResult();
+
         private DiscordSocketClient _client;
+        private CommandHandler _handler;
+
         public async Task MainAsync()
         {
             _client = new DiscordSocketClient();
-            var token = File.ReadAllText("token.txt");
-            await _client.LoginAsync(TokenType.Bot, token);
+
+            new CommandHandler(_client);
+
+            // var token = File.ReadAllText("token.txt");
+            var token = "ODMzMDA2MTU4MTE3NjAxMzAx.YHsDcA.ODD3lkjmaoNi5G3Sx8k3_Vf3Uwg";
+           await _client.LoginAsync(TokenType.Bot, token);
+
             await _client.StartAsync();
+
+            _handler = new CommandHandler(_client);
+
+            await _handler.GetUser1();
+
             await Task.Delay(-1);
-        }
-        private Task LogAsync(LogMessage log)
-        {
-            Console.WriteLine(log.ToString());
-            return Task.CompletedTask;
-        }
-        private Task ReadyAsync()
-        {
-            Console.WriteLine($"{_client.CurrentUser} is connected!");
-            return Task.CompletedTask;
-        }
-        [Command("DM")]
-        public async Task DmUser(ulong id, string message)
-        {
-            message = "pong";
-            var dm = _client.GetUser(id);
-            await dm.SendMessageAsync(message);
-        }
-
+        }       
     }
-
 }
