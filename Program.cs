@@ -24,7 +24,7 @@ namespace DiscordBotDM
             new CommandHandler(_client);
 
             // var token = File.ReadAllText("token.txt");
-            var token = "ODMzMDA2MTU4MTE3NjAxMzAx.YHsDcA._eiWb5a2r-x7YwYCQ9mQajfIIvg";
+            var token = "";
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
             await Task.Delay(-1);
